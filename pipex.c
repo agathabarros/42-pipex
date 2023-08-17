@@ -73,6 +73,7 @@ void	parent_process(char **argv, char **envp, int *fd)
 	dup2(out, STDIN_FILENO);
 	close(fd[1]);
 	execute(argv[3], envp);
+	//exit(2);
 }
 
 /**
@@ -95,6 +96,7 @@ int	main(int argc, char **argv, char **envp)
 	int		fd[2];
 	pid_t	parent;
 
+	
 	check_envp(envp);
 	if (argc == 5)
 	{

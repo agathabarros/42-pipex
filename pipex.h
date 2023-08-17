@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <errno.h>
 # include "libft/libft.h"
+# include "printf/ft_printf.h"
 
 void	check_envp(char **envp);
 void	parent_process(char **argv, char **envp, int *fd);

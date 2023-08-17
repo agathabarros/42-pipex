@@ -86,6 +86,7 @@ void	execute(char *argv, char **envp)
 	if (!path)
 	{
 		free_split(cmd);
+		
 		free (path);
 		exit(127);
 	}
