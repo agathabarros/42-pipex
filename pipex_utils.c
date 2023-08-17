@@ -82,7 +82,7 @@ void	execute(char *argv, char **envp)
 	char	*path;
 
 	cmd = ft_split(argv, ' ');
-	path = get_path(cmd[0], envp);
+	path = get_path(cmd[2], envp);
 	if (!path)
 	{
 		free_split(cmd);
