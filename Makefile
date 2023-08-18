@@ -10,7 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-PROG = pipex
+LIBRARY = pipex.a
+
+PROGRAM = pipex
 
 SRCS = pipex.c pipex_utils.c
 OBJS = $(SRCS:.c=.o)
@@ -20,25 +22,31 @@ OBJS = $(SRCS:.c=.o)
 
 INCLUDE = -I .
 
-CC = cc
+CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -g
 MAKE = make -C 
 LIBFT_PATH = libft
-LIBFT = -L ${LIBFT_PATH} -lft
+LIBFT = ${LIBFT_PATH}/libft.a
 
 .c.o:		%.o : %.c
 					${CC} ${CFLAGS} ${INCLUDE} -c $< -o $(<:.c=.o)
 
-${PROG}:	${OBJS}
-					${MAKE} ${LIBFT_PATH} all
-					${CC} ${OBJS} ${LIBFT} -o ${PROG}
+$(PROGRAM): ${LIBRARY}
+	@${CC} ${CFLAGS} ${SRCS} -o ${PROGRAM} ${LIBRARY}
 
-all: 		${PROG}
-					
+
+$(LIBRARY): ${OBJS} 
+	@${MAKE} ${LIBFT_PATH} all
+	@cp ${LIBFT} ${LIBRARY}
+	@ar rcs ${LIBRARY} ${OBJS} 
+
+all:	${PROGRAM}
+
+
 clean:
 					${MAKE} ${LIBFT_PATH} clean
-					${RM} ${OBJS}
+					${RM} ${OBJS} ${LIBRARY} ${OBJS_BONUS}
 
 fclean: 	clean
 					${MAKE} ${LIBFT_PATH} fclean

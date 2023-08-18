@@ -73,13 +73,28 @@ void	parent_process(char **argv, char **envp, int *fd)
 	dup2(out, STDIN_FILENO);
 	close(fd[1]);
 	execute(argv[3], envp);
+	//exit(2);
 }
 
-
+/**
+ * the function main() checks if the number of arguments is correct
+ * it creates a pipe
+ * it forks the process
+ * if the process is the child, it executes the first command
+ * if the process is the parent, it executes the second command
+ * it waits for the child process to finish
+ * it closes the pipe
+ * it frees the memory
+ * it exits the program
+ * if the number of arguments is incorrect, it prints an error message
+ * it exits the program
+ * it returns 0
+ * it exits the program
+*/
 int	main(int argc, char **argv, char **envp)
 {
 	int		fd[2];
-	pid_t	pid;
+	pid_t	parent;
 
 	
 	check_envp(envp);
@@ -87,12 +102,12 @@ int	main(int argc, char **argv, char **envp)
 	{
 		if (pipe(fd) == -1)
 			error();
-		pid = fork();
-		if (pid == -1)
+		parent = fork();
+		if (parent == -1)
 			error();
-		if (pid == 0)
+		if (parent == 0)
 			child_process(argv, envp, fd);
-		waitpid(pid, NULL, 0);
+		waitpid(parent, NULL, 0);
 		parent_process(argv, envp, fd);
 	}
 	else
