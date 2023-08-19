@@ -5,8 +5,8 @@ int main()
 {
 	char *args[3];
  
-	args[0] = "cat";
-	args[1] = "-e";
+	args[0] = "ls";
+	args[1] = "-l";
 	args[2] = NULL;
 	execve("/bin/ls", args, NULL);
 	printf("This line will not be executed.\n");

@@ -62,12 +62,13 @@ char	*get_path(char *cmd, char **envp)
 		path_cmd = ft_strjoin(part_path, cmd);
 		free(part_path);
 		if (access(path_cmd, F_OK) == 0)
+		{
+			free_split(path_envp);
 			return (path_cmd);
+		}
 		free(path_cmd);
 	}
-	i = -1;
-	while (path_cmd[++i])
-		free(path_cmd);
+	free_split(path_envp);
 	if_error(cmd, "command not found");
 	return (NULL);
 }
@@ -77,21 +78,19 @@ void	execute(char *argv, char **envp)
 {
 	char	**cmd;
 	char	*path;
-	int		i;
 
-	i = 0;
 	cmd = ft_split(argv, ' '); 
 	path = get_path(cmd[0], envp);
 	if (!path)
 	{
-		while (cmd [i])
-		{
-			free(cmd[i]);
-			i++;
-		}
-		free(cmd);
-		exit(1);
+		free_split(cmd);
+		free (path);
+		exit(127);
 	}
 	if (execve(path, cmd, envp) == -1)
+	{
+		free_split(cmd);
+		free (path);
 		error();
+	}
 }
