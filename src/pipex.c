@@ -6,7 +6,7 @@
 /*   By: agathabarros <agathabarros@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:23:11 by agathabarro       #+#    #+#             */
-/*   Updated: 2023/08/16 19:15:23 by agathabarro      ###   ########.fr       */
+/*   Updated: 2023/08/19 17:36:00 by agathabarro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ void	check_envp(char **envp)
 	i = -1;
 	check = 0;
 	while (envp[++i])
-	{
-		check = ft_strnstr(envp[i], "PATH=", 5) && envp[i][6];
-		check = 1;
-	}
+		if (ft_strnstr(envp[i], "PATH=", 5) && envp[i][6])
+			check = 1;
 	if (!check)
 	{
 		error();
@@ -66,11 +64,11 @@ void	parent_process(char **argv, char **envp, int *fd)
 {
 	int	out;
 
-	out = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777); 
+	out = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0755); 
 	if (out == -1)
 		error();
-	dup2(fd[0], STDOUT_FILENO);
-	dup2(out, STDIN_FILENO);
+	dup2(fd[0], STDIN_FILENO);
+	dup2(out, STDOUT_FILENO);
 	close(fd[1]);
 	execute(argv[3], envp);
 }
@@ -81,7 +79,6 @@ int	main(int argc, char **argv, char **envp)
 	int		fd[2];
 	pid_t	pid;
 
-	
 	check_envp(envp);
 	if (argc == 5)
 	{

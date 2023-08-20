@@ -6,14 +6,14 @@
 /*   By: agathabarros <agathabarros@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:23:16 by agathabarro       #+#    #+#             */
-/*   Updated: 2023/08/16 18:43:31 by agathabarro      ###   ########.fr       */
+/*   Updated: 2023/08/19 17:05:13 by agathabarro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sys/types.h>
