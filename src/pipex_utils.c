@@ -6,26 +6,18 @@
 /*   By: agathabarros <agathabarros@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:20:13 by agathabarro       #+#    #+#             */
-/*   Updated: 2023/08/19 17:29:20 by agathabarro      ###   ########.fr       */
+/*   Updated: 2023/08/22 20:54:27 by agathabarro      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../include/pipex.h"
 
-/**
- * @brief Print error message and exit
- * @param msg The error message
-*/
 void	error(void)
 {
 	perror("Error\n");
 	exit(EXIT_FAILURE);
 }
 
-/**
- * @brief Print error message and exit
- * @param header The header of the error message
-*/
 void	if_error(char *header, char *msg)
 {
 	ft_putstr_fd(header, 2);
@@ -72,7 +64,6 @@ char	*get_path(char *cmd, char **envp)
 	if_error(cmd, "command not found");
 	return (NULL);
 }
-
 
 void	execute(char *cmd, char **envp)
 {
