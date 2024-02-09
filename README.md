@@ -3,6 +3,8 @@
 <p align="center">
   <img src="https://github.com/agathabarros/42-project-badges/blob/main/badges/pipexe.png"/>
 </p>
+
+## *Grade: 100 / 100*
 Pipex is a project you’ll likely encounter on your 42 journey, and one which may give you a bit of a headache. Its purpose is to teach you some basic UNIX operations, and will greatly help you in the completion of Minishell (a mandatory project you’ll face later).
 
 Pipex focuses on three main concepts: pipelines, child processes and execution of commands. This guide will cover all three of these topics as best as it can, and guide you through the main parts of the program.
