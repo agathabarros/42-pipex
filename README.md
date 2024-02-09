@@ -6,22 +6,31 @@ Pipex focuses on three main concepts: pipelines, child processes and execution o
 
 ## Installation
 
-Clone the repository and compile the project:
+To get started, clone the repository and compile the project:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/agathabarros/42-pipex.git
 cd pipex
-make
+make 
+```
 
 ## Usage
 
-Run the program with the following command:
-
+Execute the program using the following command:
+```bash
 ./pipex file1 cmd1 cmd2 file2
+```
 
-Where:
+### Arguments:
+* file1: Input file that will undergo processing by cmd1.
+* cmd1: Initial command for execution.
+* cmd2: Subsequent command for execution.
+* file2: Output file to store the resulting data.
 
-file1: Input file whose content will be processed by cmd1.
-cmd1: First command to be executed.
-cmd2: Second command to be executed.
-file2: Output file where the result will be saved.
+### <span style="font-size: 5 px;">Example:</span>
+
+```bash
+ ./pipeline input.txt "grep error" "sort" output.txt
+```
+
+In this example, the command pipeline executes the commands grep error and sort sequentially. It searches for lines containing the word "error" in the file input.txt, sorts the lines alphabetically, and then saves the result in the file output.txt.
